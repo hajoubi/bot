@@ -1,27 +1,32 @@
-import pyautogui
+
 import time
+import pyautogui
+
+
 def mouse_click(x,y):
-    time.sleep(3)
-    
+    time.sleep(1)
     pyautogui.click(x,y)
 def key_press(char):
-     time.sleep(3)
+     time.sleep(1)
      pyautogui.press(char)
 
-cordinate = open("click_coordinates.txt",'r')
+cordinate = open("click_coordinatess.txt",'r')
 read = cordinate.readlines()
-count = 0
-cordinate.close()
+
+
 
 for line in read :
+    
     striped_string = line.strip()
+    
     if striped_string.isalpha():
             key_press(striped_string)
     
     else :
-        cordination =line.strip().split(",")
-        for values in cordination :
-             x = cordination[0]
-             y = cordination[1]
-        mouse_click(x,y)
-             
+        position =line.strip().split(",")
+        for values in position :
+            x = int(position[0])
+            y = int(position[1])
+            
+    mouse_click(x,y)
+cordinate.close()

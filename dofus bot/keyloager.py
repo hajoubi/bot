@@ -1,10 +1,14 @@
 import pynput
 from pynput.mouse import Listener
 from pynput import keyboard
+import time
+
+
+time.sleep(2)
 
 def on_press(key):
     try:
-        with open("alpha.txt", "a") as f:
+        with open("click_coordinates.txt", "a") as f:
             f.write((f"{key.char}\n"))
     except AttributeError:
         print('special key {0} pressed'.format(
@@ -24,8 +28,9 @@ def on_release(key):
 def on_click(x, y, button, pressed):
    if pressed:
        with open("click_coordinates.txt", "a") as f:
-           f.write(f"{x}, {y}\n")
-
+            f.write(f"{x},{y}\n")
+       
+   
 
 listener = keyboard.Listener(
     on_press=on_press,
